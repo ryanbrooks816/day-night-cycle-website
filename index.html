@@ -11,7 +11,7 @@
     </head>
 
     <body>
-    <main id="hero" aria-label="Animated day and night cycle">
+        <main id="hero" aria-label="Animated day and night cycle">
             <div class="hero__animation">
                 <div id="background-sunrise" class="background"></div>
                 <div id="background-sunset" class="background"></div>
@@ -37,14 +37,12 @@
                 </div>
                 <div id="clouds" aria-hidden="true"></div>
                 <div id="stars" aria-hidden="true"></div>
-                <div class="hero__wave" aria-hidden="true"></div>
+            </div>
+        </main>
+        <div class="speed-control" aria-label="Simulation speed control">
+            <label for="speed-slider">Speed <output id="speed-value" for="speed-slider">1×</output></label>
+            <input id="speed-slider" type="range" min="1" max="8" step="0.25" value="1" aria-label="Simulation speed" />
         </div>
-    </main>
-    <div class="speed-control" aria-label="Simulation speed control">
-        <label for="speed-slider">Speed <output id="speed-value" for="speed-slider">1×</output></label>
-        <input id="speed-slider" type="range" min="1" max="8" step="0.25" value="1"
-            aria-label="Simulation speed">
-    </div>
-    <script src="index.js"></script>
-</body>
+        <script src="index.js"></script>
+    </body>
 </html>

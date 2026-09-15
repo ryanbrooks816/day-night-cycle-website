@@ -42,21 +42,6 @@ body {
   transition: opacity 4s ease-in-out;
 }
 
-.hero__wave {
-  position: absolute;
-  z-index: 7;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: min(34vh, 320px);
-  background-image: url("assets/wave.svg");
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  pointer-events: none;
-}
-
 .speed-control {
   position: fixed;
   z-index: 20;
@@ -75,7 +60,12 @@ body {
   transform: translateX(50%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  font: 600 0.85rem/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font:
+    600 0.85rem/1 system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 .speed-control label {
