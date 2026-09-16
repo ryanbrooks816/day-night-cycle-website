@@ -27,21 +27,27 @@ for (let i = 0; i < 100; i += 1) {
   stars.appendChild(star);
 }
 
-// Keep clouds in separate cells so they are spread across the sky.
-const gridColumns = 4;
-const gridRows = 2;
-for (let column = 0; column < gridColumns; column += 1) {
-  for (let row = 0; row < gridRows; row += 1) {
-    if (Math.random() >= 0.4) continue;
+// Two staggered cloud batches keep arrivals spread out as clouds wrap around.
+const cloudCycleSeconds = 150;
+const cloudSetOffsetSeconds = cloudCycleSeconds / 4;
+const cloudWithinSetOffsetSeconds = cloudCycleSeconds / 2;
+for (let batch = 0; batch < 2; batch += 1) {
+  const cloudSet = document.createElement("div");
+  cloudSet.className = "cloud-set";
 
+  for (let cloudIndex = 0; cloudIndex < 2; cloudIndex += 1) {
     const cloud = document.createElement("div");
     cloud.className = `cloud cloud${Math.floor(random(1, 6))}`;
-    const cellWidth = 100 / gridColumns;
-    const cellHeight = 50 / gridRows;
-    cloud.style.left = `${random(cellWidth * column, cellWidth * (column + 1))}%`;
-    cloud.style.top = `${random(cellHeight * row, cellHeight * (row + 1))}%`;
-    clouds.appendChild(cloud);
+    const row = (batch + cloudIndex) % 2;
+    cloud.style.top = `${random(row * 25, (row + 1) * 25)}%`;
+    cloud.style.setProperty("--cloud-static-left", `${random(0, 75)}%`);
+    cloud.style.animationDelay = `-${
+      batch * cloudSetOffsetSeconds + cloudIndex * cloudWithinSetOffsetSeconds
+    }s`;
+    cloudSet.appendChild(cloud);
   }
+
+  clouds.appendChild(cloudSet);
 }
 
 let angle = Math.PI;
@@ -63,7 +69,7 @@ function updateOrbit() {
   centerX = width / 2;
   centerY = height / 2;
   radiusX = centerX * 1.1;
-  radiusY = centerY * 1.1;
+  radiusY = Math.max(0, Math.min(centerY * 0.9, centerY - 40));
 }
 
 function setScene(stage) {

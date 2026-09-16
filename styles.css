@@ -103,4 +103,10 @@ body {
   #stars {
     transition: none;
   }
+
+  #clouds .cloud {
+    left: var(--cloud-static-left);
+    animation: none;
+    transform: none;
+  }
 }

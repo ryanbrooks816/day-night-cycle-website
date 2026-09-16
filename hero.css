@@ -106,13 +106,20 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 4;
+    z-index: 6;
     overflow: hidden;
 }
 
+.cloud-set {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
 .cloud {
-    width: 400px;
-    height: 80px;
+    width: min(400px, 75vw);
+    height: min(80px, 15vw);
+    left: 100%;
     z-index: 4;
     position: absolute;
     background-repeat: no-repeat;
@@ -120,6 +127,8 @@
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
     opacity: 0.5;
+    animation: cloud-drift 150s linear infinite;
+    will-change: transform;
 }
 
 .cloud1 {
@@ -142,11 +151,17 @@
     background-image: url('assets/cloud5.png');
 }
 
+@keyframes cloud-drift {
+    to {
+        transform: translate3d(calc(-100vw - 100%), 0, 0);
+    }
+}
+
 #stars {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 5;
+    z-index: 7;
     opacity: 0;
     transition: opacity 4s;
 }
